@@ -32,7 +32,7 @@ func svnCheckout(cg utils.RecordTomlConfig) {
 		cmd := fmt.Sprintf(
 			"svn checkout %v %v/%v --revision %v --username %v --password %v --no-auth-cache --non-interactive --trust-server-cert-failures=unknown-ca,cn-mismatch,expired,not-yet-valid,other",
 			svnPath, svnLocalPath, moduleName, svnVersion, SvnUserName, SvnPassword)
-		log.Printf(cmd)
+		// log.Printf(cmd)
 		_, cmdErr := utils.ExecShell(cmd)
 		if "" != cmdErr {
 			log.Panicln(cmdErr)

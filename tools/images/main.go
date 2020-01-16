@@ -27,7 +27,7 @@ const syncConfigString = `{
   },
   "images": {
   	{{- range $i, $x := .Modules}}
-  	"{{$x.SrcRegistry}}{{$x.Prefix}}{{$x.ImageName}}:{{$x.ImageVersion}}": "{{$x.RemoteRegistry}}{{$x.Prefix}}{{$x.ImageName}}:{{$x.ImageVersion}}"{{$x.EndOfLine}}
+  	"{{$x.SrcRegistry}}/{{$x.Prefix}}{{$x.ImageName}}:{{$x.ImageVersion}}": "{{$x.RemoteRegistry}}/{{$x.Prefix}}{{$x.ImageName}}:{{$x.ImageVersion}}"{{$x.EndOfLine}}
   	{{- end}}
   }
 }`
