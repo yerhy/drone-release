@@ -12,6 +12,7 @@ import (
 // RecordTomlConfig is a golang struct of svn_record
 type RecordTomlConfig struct {
 	Drone struct {
+        Name           string `toml:name`
 		CodePath       string `toml:"code_path"`
 		DeployDirPath  string `toml:"deploy_dir_path"`
 		ImageSvncPath  string `toml:"image_svnc_path"`

@@ -56,7 +56,13 @@ func templateDeployYaml(cg utils.RecordTomlConfig) {
 					envMap["TEMPLATE_IMAGE_VERSION"] = recordInfo.SvnVersion
 				}
 				_ = tmpl.Execute(&buffer, envMap)
-				_ = ioutil.WriteFile(deployFilePath, buffer.Bytes(), 0755)
+                t := buffer.Bytes()
+                if cg.Drone.Name == "idc" {
+                    m := strings.Replace(string(t), "annotations: {kubernetes.io/ingress.class: kong-nuri}", "annotations: {kubernetes.io/ingress.class: kong-tembin}", -1)
+				    _ = ioutil.WriteFile(deployFilePath, []byte(m), 0755)
+               } else {
+				    _ = ioutil.WriteFile(deployFilePath, t, 0755)
+               }
 			}
 			waitgroup.Done()
 		}()
