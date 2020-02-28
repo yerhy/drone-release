@@ -30,11 +30,11 @@ func templateDeployYaml(cg utils.RecordTomlConfig) {
 		go func() {
 			for item := range recordInfo.DeployFilePath {
 				filePath := fmt.Sprintf("%v/%v/%v", codePath, recordInfo.ModuleName, recordInfo.DeployFilePath[item])
-				fileContent, err := ioutil.ReadFile(filePath)
-				if !strings.Contains(string(fileContent), "{{") || !strings.Contains(string(fileContent), "}}") {
-					//not need replace from template
-					continue
-				}
+				// fileContent, err := ioutil.ReadFile(filePath)
+				// if !strings.Contains(string(fileContent), "{{") || !strings.Contains(string(fileContent), "}}") {
+				// 	//not need replace from template
+				// 	continue
+				// }
 				tmpl, err := template.ParseFiles(filePath)
 				if err != nil {
 					log.Printf("template parse failed:%v", err)
