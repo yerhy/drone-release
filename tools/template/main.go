@@ -35,6 +35,18 @@ func templateDeployYaml(cg utils.RecordTomlConfig) {
 				// 	//not need replace from template
 				// 	continue
 				// }
+                
+                //只渲染后缀为.tmpl的文件， 其余文件直接cp
+                if filePath[len(filePath)-5:] != ".tmpl" {
+                    log.Printf("file_name: %v", filePath)
+                    cmd := fmt.Sprintf("cp %v %v", filePath, deployDirPath)
+		            _, cmdErr := utils.ExecShell(cmd)
+		            if "" != cmdErr {
+		            	log.Panicln(cmdErr)
+		            }
+                    continue
+                }
+
 				tmpl, err := template.ParseFiles(filePath)
 				if err != nil {
 					log.Printf("template parse failed:%v", err)
